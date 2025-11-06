@@ -1,170 +1,150 @@
 import java.util.Scanner;
 
+// --- CLASSE DE OPERAÇÕES ---
+// Contém todos os métodos para os cálculos
+class Operadores {
+
+    // --- MÉTODOS ARITMÉTICOS (TEAMS) ---
+    public float adicao(float v1, float v2) {
+        return v1 + v2;
+    }
+
+    public float subtracao(float v1, float v2) {
+        return v1 - v2;
+    }
+
+    public float multiplicacao(float v1, float v2) {
+        return v1 * v2;
+    }
+
+    public float divisao(float v1, float v2) {
+        // Adicionando uma verificação para evitar divisão por zero
+        if (v2 == 0) {
+            System.out.println("Erro: Divisão por zero!");
+            return 0; // Retorna 0 em caso de erro
+        }
+        return v1 / v2;
+    }
+
+    // --- MÉTODO (ATRIBUIÇÃO) ---
+    // Este método demonstra os operadores de atribuição em cadeia
+    public void demonstrarAtribuicao(float valor, float op) {
+        System.out.println("\n--- Demonstração: Operadores de Atribuição ---");
+        System.out.println("Valor inicial: " + valor + ", Operador: " + op);
+        
+        // O valor é modificado em cada passo
+        valor += op; // Ex: 150 + 2 = 152
+        System.out.println("Após (valor += " + op + "): " + valor);
+        
+        valor -= op; // Ex: 152 - 2 = 150
+        System.out.println("Após (valor -= " + op + "): " + valor);
+        
+        valor *= op; // Ex: 150 * 2 = 300
+        System.out.println("Após (valor *= " + op + "): " + valor);
+        
+        valor /= op; // Ex: 300 / 2 = 150
+        System.out.println("Após (valor /= " + op + "): " + valor);
+        
+        valor %= op; // Ex: 150 % 2 = 0
+        System.out.println("Após (valor %= " + op + "): " + valor);
+        
+        System.out.println("----------------------------------------------");
+    }
+
+    // --- MÉTODOS (COMPARAÇÃO) ---
+    // Retornam verdadeiro (true) ou falso (false)
+    public boolean maiorQue(float v1, float v2) {
+        return v1 > v2;
+    }
+
+    public boolean menorQue(float v1, float v2) {
+        return v1 < v2;
+    }
+
+    public boolean igualA(float v1, float v2) {
+        return v1 == v2;
+    }
+
+    public boolean diferenteDe(float v1, float v2) {
+        return v1 != v2;
+    }
+
+    public boolean maiorOuIgual(float v1, float v2) {
+        return v1 >= v2;
+    }
+
+    public boolean menorOuIgual(float v1, float v2) {
+        return v1 <= v2;
+    }
+
+    // --- NOVOS MÉTODOS (LÓGICOS) ---
+    // Operam sobre valores booleanos
+    public boolean logE(boolean b1, boolean b2) {
+        return b1 && b2;
+    }
+
+    public boolean logOU(boolean b1, boolean b2) {
+        return b1 || b2;
+    }
+
+    public boolean logNAO(boolean b1) {
+        return !b1;
+    }
+}
+
+// --- CLASSE PRINCIPAL ---
 public class App {
 
-    // 1. Deixamos o 'Scanner' como "static" (estático)
-    // Assim, ele pode ser usado por todos os outros métodos estáticos da classe sem precisarmos criá-lo várias vezes.
-    static Scanner ler = new Scanner(System.in);
-
-    /**
-     * Método principal (main)
-     * Ele vai chamar todos os outros métodos que demonstram os operadores.
-     */
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         
-        // Chamando cada método de demonstração, um por um
-        demonstrarAritmeticos();
-        demonstrarIncrementoDecremento();
-        demonstrarAtribuicao();
-        demonstrarComparacao();
-        demonstrarLogicos();
+        // Criando a instância da classe Operadores
+        Operadores op = new Operadores();
+
+        // 2. Craindo o scanner para ler a entrada do usuário
+        Scanner scanner = new Scanner(System.in);
+
+        // 3. Pedindo os valores para os operadores aritméticos e de comparação
+        System.out.println("--- Entrada de Valores ---");
+        System.out.print("Digite o primeiro valor (v1): ");
+        float v1 = scanner.nextFloat(); // Lê o primeiro número
+
+        System.out.print("Digite o segundo valor (v2): ");
+        float v2 = scanner.nextFloat(); // Lê o segundo número
+
+
+        // --- EXEMPLOS DE USO (ARITMÉTICOS) ---
+        // Agora usando as variáveis v1 e v2
+        System.out.println("\n--- Operadores Aritméticos ---");
+        System.out.println("Resultado da adição (" + v1 + " + " + v2 + "): " + op.adicao(v1, v2));
+        System.out.println("Resultado da subtração (" + v1 + " - " + v2 + "): " + op.subtracao(v1, v2));
+        System.out.println("Resultado da multiplicação (" + v1 + " * " + v2 + "): " + op.multiplicacao(v1, v2));
+        System.out.println("Resultado da divisão (" + v1 + " / " + v2 + "): " + op.divisao(v1, v2));
         
-        System.out.println("\n--- Demonstração Concluída ---");
+        // --- EXEMPLOS DE USO (ATRIBUIÇÃO) ---
+        // Vou usar os mesmos v1 e v2 para a demonstração
+        System.out.println("\n(Usando v1 = " + v1 + " como valor inicial e v2 = " + v2 + " como operador para atribuição)");
+        op.demonstrarAtribuicao(v1, v2);
+
+        // --- EXEMPLOS DE USO (COMPARAÇÃO) ---
+        // Reutilizando os valores v1 e v2
+        System.out.println("\n--- Operadores de Comparação ---");
+        System.out.println(v1 + " > " + v2 + " é: " + op.maiorQue(v1, v2));
+        System.out.println(v1 + " < " + v2 + " é: " + op.menorQue(v1, v2));
+        System.out.println(v1 + " == " + v2 + " é: " + op.igualA(v1, v2));
+        System.out.println(v1 + " != " + v2 + " é: " + op.diferenteDe(v1, v2));
         
-        // Boa prática: Fechar o Scanner quando não for mais usá-lo
-        ler.close();
-    }
-
-    /**
-     * Escopo da Atividade:
-     * Método para demonstrar os operadores Aritméticos: +, -, *, /, %
-     * (Conforme a primeira imagem do README)
-     */
-    public static void demonstrarAritmeticos() {
-        System.out.println("\n--- 1. Operadores Aritméticos ---");
-        System.out.print("Digite o primeiro número (inteiro): ");
-        int a = ler.nextInt();
-        System.out.print("Digite o segundo número (inteiro): ");
-        int b = ler.nextInt();
-
-        System.out.println(a + " + " + b + " = " + (a + b)); // Soma
-        System.out.println(a + " - " + b + " = " + (a - b)); // Subtração
-        System.out.println(a + " * " + b + " = " + (a * b)); // Multiplicação
+        // --- EXEMPLOS DE USO (LÓGICOS) ---
+        // Usando os resultados das comparações como entradas lógicas
+        System.out.println("\n--- Operadores Lógicos ---");
+        boolean b1 = op.maiorQue(v1, v2); // Resultado de (v1 > v2)
+        boolean b2 = op.igualA(v1, v2);  // Resultado de (v1 == v2)
         
-        // Vamos checar se o segundo número é zero para evitar erros na divisão
-        if (b != 0) {
-            // Divisão entre inteiros resulta em um inteiro (ignora casas decimais)
-            System.out.println(a + " / " + b + " = " + (a / b) + " (Divisão Inteira)");
-            
-            // Para ter um resultado "real", convertemos um dos números para double
-            System.out.println(a + " / " + b + " = " + ((double)a / b) + " (Divisão Real)");
-            
-            // Módulo (resto da divisão)
-            System.out.println(a + " % " + b + " = " + (a % b) + " (Módulo/Resto)");
-        } else {
-            System.out.println("Não é possível dividir por zero.");
-        }
-    }
+        System.out.println("(Usando b1 = '" + v1 + " > " + v2 + "' e b2 = '" + v1 + " == " + v2 + "')");
+        System.out.println(b1 + " E " + b2 + " é: " + op.logE(b1, b2));
+        System.out.println(b1 + " OU " + b2 + " é: " + op.logOU(b1, b2));
+        System.out.println("NÃO " + b1 + " é: " + op.logNAO(b1));
 
-    /**
-     * Escopo da Atividade:
-     * Método para demonstrar os operadores de Incremento e Decremento: ++, --
-     * (Conforme a segunda imagem do README)
-     */
-    public static void demonstrarIncrementoDecremento() {
-        System.out.println("\n--- 2. Operadores Incremento/Decremento ---");
-        System.out.print("Digite um número inicial: ");
-        int num = ler.nextInt();
-
-        // Pós-incremento: usa o valor ATUAL e DEPOIS soma 1
-        System.out.println("Valor atual: " + num);
-        System.out.println("Usando Pós-incremento (num++): " + (num++)); 
-        System.out.println("Valor após o pós-incremento: " + num);
-
-        // Pré-incremento: PRIMEIRO soma 1 e DEPOIS usa o valor
-        System.out.println("Usando Pré-incremento (++num): " + (++num));
-        System.out.println("Valor após o pré-incremento: " + num);
-
-        // Pós-decremento: usa o valor ATUAL e DEPOIS subtrai 1
-        System.out.println("Usando Pós-decremento (num--): " + (num--));
-        System.out.println("Valor após o pós-decremento: " + num);
-
-        // Pré-decremento: PRIMEIRO subtrai 1 e DEPOIS usa o valor
-        System.out.println("Usando Pré-decremento (--num): " + (--num));
-        System.out.println("Valor após o pré-decremento: " + num);
-    }
-
-    /**
-     * Desafio da Atividade:
-     * Método para demonstrar os operadores de Atribuição: =, +=, -=, *=, /=, %=
-     */
-    public static void demonstrarAtribuicao() {
-        System.out.println("\n--- 3. Operadores de Atribuição ---");
-        System.out.print("Digite um valor inicial (ex: 100): ");
-        int valor = ler.nextInt();
-        System.out.print("Digite um valor para operar (ex: 5): ");
-        int op = ler.nextInt();
-
-        System.out.println("Valor inicial: " + valor);
-        
-        valor += op; // Equivalente a: valor = valor + op;
-        System.out.println("Após (valor += " + op + "): " + valor);
-
-        valor -= op; // Equivalente a: valor = valor - op;
-        System.out.println("Após (valor -= " + op + "): " + valor);
-
-        valor *= op; // Equivalente a: valor = valor * op;
-        System.out.println("Após (valor *= " + op + "): " + valor);
-
-        if (op != 0) {
-            valor /= op; // Equivalente a: valor = valor / op;
-            System.out.println("Após (valor /= " + op + "): " + valor);
-
-            valor %= op; // Equivalente a: valor = valor % op;
-            System.out.println("Após (valor %= " + op + "): " + valor);
-        } else {
-             System.out.println("Operações de /= e %= puladas para evitar divisão por zero.");
-        }
-    }
-
-    /**
-     * Desafio da Atividade:
-     * Método para demonstrar os operadores de Comparação (Relacionais): ==, !=, >, <, >=, <=
-     */
-    public static void demonstrarComparacao() {
-        System.out.println("\n--- 4. Operadores de Comparação (Relacionais)");
-        System.out.println("Estes operadores sempre retornam 'true' (verdadeiro) ou 'false' (falso).");
-        System.out.print("Digite o primeiro número: ");
-        int a = ler.nextInt();
-        System.out.print("Digite o segundo número: ");
-        int b = ler.nextInt();
-
-        System.out.println(a + " == " + b + " (Igual a): " + (a == b));
-        System.out.println(a + " != " + b + " (Diferente de): " + (a != b));
-        System.out.println(a + " > " + b + " (Maior que): " + (a > b));
-        System.out.println(a + " < " + b + " (Menor que): " + (a < b));
-        System.out.println(a + " >= " + b + " (Maior ou igual a): " + (a >= b));
-        System.out.println(a + " <= " + b + " (Menor ou igual a): " + (a <= b));
-    }
-    
-    /**
-     * Desafio da Atividade:
-     * Método para demonstrar os operadores Lógicos: && (E), || (OU), ! (NÃO)
-     */
-    public static void demonstrarLogicos() {
-        System.out.println("\n--- 5. Operadores Lógicos ---");
-        System.out.println("Vamos testar duas condições lógicas:");
-        System.out.println("Condição 1: O número é maior que 10?");
-        System.out.println("Condição 2: O número é par?");
-        
-        System.out.print("\nDigite um número: ");
-        int num = ler.nextInt();
-
-        // Criando as duas condições booleanas
-        boolean cond1 = (num > 10);
-        boolean cond2 = (num % 2 == 0); // (Resto da divisão por 2 é 0)
-        
-        System.out.println("Número digitado: " + num);
-        System.out.println("Condição 1 (num > 10) é: " + cond1);
-        System.out.println("Condição 2 (num % 2 == 0) é: " + cond2);
-
-        // && (E Lógico) - SÓ é verdade se AMBAS forem verdadeiras
-        System.out.println("(Condição 1 E Condição 2) -> (cond1 && cond2): " + (cond1 && cond2));
-
-        // || (OU Lógico) - SÓ é falso se AMBAS forem falsas
-        System.out.println("(Condição 1 OU Condição 2) -> (cond1 || cond2): " + (cond1 || cond2));
-
-        // ! (NÃO Lógico) - Inverte o valor (true vira false, false vira true)
-        System.out.println("Negação da Condição 1 -> (!cond1): " + (!cond1));
+        // 4. FECHAR O SCANNER (Boa prática)
+        scanner.close();
     }
 }
